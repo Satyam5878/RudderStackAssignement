@@ -1,0 +1,17 @@
+pluginManagement {
+	repositories {
+		maven { url 'https://repo.spring.io/milestone' }
+		maven { url 'https://repo.spring.io/snapshot' }
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'tracking'
+include 'tracking-plan-webserver'
+include 'tracking-plan'
+include 'tracking-plan:tracking-plan-api'
+findProject(':tracking-plan:tracking-plan-api')?.name = 'tracking-plan-api'
+include 'tracking-plan:tracking-plan-domain'
+findProject(':tracking-plan:tracking-plan-domain')?.name = 'tracking-plan-domain'
+include 'tracking-plan:tracking-plan-routing'
+findProject(':tracking-plan:tracking-plan-routing')?.name = 'tracking-plan-routing'
+
