@@ -13,13 +13,29 @@ repositories {
 dependencies {
 
     //internal-project dependency
+    implementation project(':tracking-plan:tracking-plan-domain')
     implementation project(':tracking-plan:tracking-plan-routing')
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    //implementation 'org.springframework.data:spring-data-mongodb'
+    // https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
+//    implementation 'org.mongodb:mongo-java-driver'
+//    implementation 'org.mongodb:mongo-java-driver'
+//    implementation 'org.mongodb:mongo-java-driver'
+
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
+    implementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    implementation 'de.flapdoodle.embed:de.flapdoodle.embed.process'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+
+
+    // https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo
+
 
 
 
@@ -51,4 +67,15 @@ test {
 //        Desktop.getDesktop().browse(URI("https://localhost:$httpsPort/swagger"))
 //    }
 //})
+
+task bootApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+            //sourceSets.main.get().runtimeClasspath
+    mainClass.set("com.rudderstack.tracking.webserver.TrackingPlanWebserverApplication")
+
+    jvmArgs(List.of(
+            "--add-opens", "java.base/java.util=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED"
+    ))
+}
 

@@ -12,12 +12,28 @@ repositories {
 
 dependencies {
 
+    // internal dependency
+    implementation project(":tracking-plan:tracking-plan-api")
+    implementation project(":tracking-plan:tracking-plan-domain")
+
     // Third party libs
     implementation 'ch.qos.logback:logback-classic'
-    implementation 'org.springframework:spring-web'
+
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    //implementation 'org.springframework:spring-web'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+
+    //compileOnly 'org.projectlombok:lombok:1.18.26'
+    // https://mvnrepository.com/artifact/com.networknt/json-schema-validator
+    implementation 'com.networknt:json-schema-validator:1.0.77'
+
+   // implementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+
+
+
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
